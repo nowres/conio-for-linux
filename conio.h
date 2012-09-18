@@ -1,10 +1,3 @@
-/* 
- * File:   conio.h
- * Author: nowres RAFED <nowres.rafed@gmail.com>
- *
- * Created on September 18, 2012, 10:30 PM
- */
-
 #ifndef CONIO_H
 #define	CONIO_H
 
@@ -26,9 +19,7 @@ extern "C" {
 #define LIGHTRED COLOR_RED
 #define LIGHTGREEN COLOR_GREEN
 
-
-int screen_initialized;
-WINDOW *working_window;
+WINDOW *_conio_working_window;
 
 void init_screen(void);
 
@@ -41,28 +32,23 @@ void textcolor(int color);
 void delline(void);
 void window(int left, int top, int right, int bottom);
 
-#define printf(format, args...) (init_screen(),wprintw(working_window,format , ##args),wrefresh(working_window))
+#define printf(format, args...) (init_screen(),wprintw(_conio_working_window,format , ##args),wrefresh(_conio_working_window))
 #define cprintf printf
 
-#define scanf(format, args...) (init_screen(),echo(),wscanw(working_window,format , ##args),wrefresh(working_window),noecho())
+#define scanf(format, args...) (init_screen(),echo(),wscanw(_conio_working_window,format , ##args),wrefresh(_conio_working_window),noecho())
 #define cscanf scanf
 
-#define cputs(str) (init_screen(),wprintw(working_window,"%s\n" , str),wrefresh(working_window))
+#define cputs(str) (init_screen(),wprintw(_conio_working_window,"%s\n" , str),wrefresh(_conio_working_window))
 
-#define cgets(str) (init_screen(),echo(),wgetstr(working_window,str),wrefresh(working_window),noecho())
+#define cgets(str) (init_screen(),echo(),wgetstr(_conio_working_window,str),wrefresh(_conio_working_window),noecho())
 
 #undef getch
-#define getch() (init_screen(),wgetch(working_window))
-unsigned int _temp_char;
-#define getche() (init_screen(),waddch(working_window,_temp_char=getch()),wrefresh(working_window),_temp_char)
+#define getch() (init_screen(),wgetch(_conio_working_window))
+unsigned int _conio_temp_char;
+#define getche() (init_screen(),waddch(_conio_working_window,_conio_temp_char=getch()),wrefresh(_conio_working_window),_conio_temp_char)
 
-#define wherex() (init_screen(),getcurx(working_window))
-#define wherey() (init_screen(),getcury(working_window))
-
-#define _cu_get_color_pair(f,b) ((f)|((b)<<3))
-
-int _cu_fore_color;
-int _cu_bkgnd_color;
+#define wherex() (init_screen(),getcurx(_conio_working_window))
+#define wherey() (init_screen(),getcury(_conio_working_window))
 
 
 #ifdef	__cplusplus

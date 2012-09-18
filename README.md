@@ -13,6 +13,28 @@ Usage
 
 * ncurses must be linked.
 
+Current Status
+==============
+
+Currently supported functions:
+
+* gotoxy
+* clrscr
+* clreol
+* kbhit
+* textbackground
+* textcolor
+* delline
+* window
+* getch
+* getche
+* cprintf
+* cscanf
+* cputs
+* cgets
+* wherex
+* wherey
+
 License
 =======
 
