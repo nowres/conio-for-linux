@@ -20,8 +20,8 @@ CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
 CND_ARTIFACT_NAME_Release=libconio.so
 CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/libconio.so
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=libconio.so.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/libconio.so.tar
+CND_PACKAGE_NAME_Release=
+CND_PACKAGE_PATH_Release=
 #
 # include compiler specific variables
 #
