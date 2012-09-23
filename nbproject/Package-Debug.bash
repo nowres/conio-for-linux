@@ -12,9 +12,9 @@ CND_DISTDIR=dist
 CND_BUILDDIR=build
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT}
-OUTPUT_BASENAME=libconio.${CND_DLIB_EXT}
-PACKAGE_TOP_DIR=libconio.so/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a
+OUTPUT_BASENAME=libconio.a
+PACKAGE_TOP_DIR=/usr/
 
 # Functions
 function checkReturnCode
@@ -59,16 +59,33 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/libconio.so/lib"
+makeDirectory "${NBTMPDIR}//usr/lib"
 copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}lib/${OUTPUT_BASENAME}" 0644
 
 
-# Generate tar file
+# Create control file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libconio.so.tar
-cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libconio.so.tar *
+CONTROL_FILE=${NBTMPDIR}/DEBIAN/control
+rm -f ${CONTROL_FILE}
+mkdir -p ${NBTMPDIR}/DEBIAN
+
+cd "${TOP}"
+echo 'Package: libconio.a' >> ${CONTROL_FILE}
+echo 'Version: 0.4' >> ${CONTROL_FILE}
+echo 'Architecture: amd64' >> ${CONTROL_FILE}
+echo 'Maintainer: nowres' >> ${CONTROL_FILE}
+echo 'Description: Conio.h for linux 0.4 (beta)' >> ${CONTROL_FILE}
+
+# Create Debian Package
+cd "${TOP}"
+cd "${NBTMPDIR}/.."
+dpkg-deb  --build ${TMPDIRNAME}
 checkReturnCode
+cd "${TOP}"
+mkdir -p  ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package
+mv ${NBTMPDIR}.deb ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libconio.deb
+checkReturnCode
+echo Debian: ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/libconio.deb
 
 # Cleanup
 cd "${TOP}"

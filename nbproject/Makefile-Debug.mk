@@ -56,18 +56,18 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT}
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT}: -lncurses
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT}: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -shared -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT} -fPIC ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a
+	${AR} -rv ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a ${OBJECTFILES} 
+	$(RANLIB) ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a
 
-${OBJECTDIR}/conio.o: conio.c 
+${OBJECTDIR}/conio.o: nbproject/Makefile-${CND_CONF}.mk conio.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.c) -g -I/usr/include -fPIC  -MMD -MP -MF $@.d -o ${OBJECTDIR}/conio.o conio.c
+	$(COMPILE.c) -g -I/usr/include -MMD -MP -MF $@.d -o ${OBJECTDIR}/conio.o conio.c
 
 # Subprojects
 .build-subprojects:
@@ -75,7 +75,7 @@ ${OBJECTDIR}/conio.o: conio.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.${CND_DLIB_EXT}
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libconio.a
 
 # Subprojects
 .clean-subprojects:

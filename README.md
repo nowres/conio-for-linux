@@ -1,7 +1,7 @@
 conio-for-linux
 ===============
 
-Conio.h for linux 0.3 (beta)
+Conio.h for linux 0.4 (beta)
 
 Installation
 ============
