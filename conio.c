@@ -128,12 +128,12 @@ int getche(void) {
 
 int wherex(void) {
     init_screen();
-    getcurx(_working_window);
+    return getcurx(_working_window);
 }
 
 int wherey(void) {
     init_screen();
-    getcury(_working_window);
+    return getcury(_working_window);
 }
 
 int cputs(char* buf) {
