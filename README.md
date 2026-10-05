@@ -1,39 +1,63 @@
 conio-for-linux
 ===============
 
-Conio.h for linux 0.4 (beta)
+Conio.h for linux 1.0
+
+A Linux implementation of the DOS/Windows `conio.h` console I/O API, built on ncurses.
+
+Requirements
+============
+
+* GCC and GNU Make
+* ncurses development files (e.g. `libncurses-dev` on Debian/Ubuntu, `ncurses-devel` on Fedora)
 
 Installation
 ============
 
-* run `make` to build the library.
+* run `make` to build the library (output: `dist/Debug/GNU-Linux-x86/libconio.a`).
 
 Usage
 =====
 
-* ncurses must be linked.
+* include `conio.h` in your program.
+* link against `libconio.a` and ncurses, e.g. `gcc prog.c libconio.a -lncurses`.
 
-Current Status
-==============
+Currently supported functions
+=============================
 
-Currently supported functions:
+Cursor and screen:
 
 * gotoxy
 * clrscr
 * clreol
-* kbhit
-* textbackground
-* textcolor
 * delline
 * window
-* getch
-* getche
-* cprintf
-* cscanf
-* cputs
-* cgets
 * wherex
 * wherey
+
+Input:
+
+* kbhit
+* getch
+* getche
+* cgets
+* cscanf
+
+Output:
+
+* cputs
+* cprintf
+
+Text attributes:
+
+* textcolor
+* textbackground
+
+Testing
+=======
+
+* run `make -C tests test` to run the unit tests.
+* each test runs in a forked child on a pseudo-terminal, so no real terminal is needed.
 
 License
 =======

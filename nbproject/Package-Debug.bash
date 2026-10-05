@@ -71,10 +71,10 @@ mkdir -p ${NBTMPDIR}/DEBIAN
 
 cd "${TOP}"
 echo 'Package: libconio.a' >> ${CONTROL_FILE}
-echo 'Version: 0.4' >> ${CONTROL_FILE}
+echo 'Version: 1.0' >> ${CONTROL_FILE}
 echo 'Architecture: amd64' >> ${CONTROL_FILE}
 echo 'Maintainer: nowres' >> ${CONTROL_FILE}
-echo 'Description: Conio.h for linux 0.4 (beta)' >> ${CONTROL_FILE}
+echo 'Description: Conio.h for linux 1.0' >> ${CONTROL_FILE}
 
 # Create Debian Package
 cd "${TOP}"

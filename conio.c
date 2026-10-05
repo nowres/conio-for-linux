@@ -9,9 +9,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-#define max(x,y) ( (x)<(y)?(y):(x) )
-#define min(x,y) ( (x)<(y)?(x):(y) )
-
 #define _cu_get_color_pair(f,b) ((f)|((b)<<3))
 
 int screen_initialized;
@@ -33,12 +30,9 @@ void init_screen(void) {
             start_color();
             init_pair(_cu_get_color_pair(_cu_fore_color, _cu_bkgnd_color), _cu_fore_color, _cu_bkgnd_color);
             attron(COLOR_PAIR(_cu_get_color_pair(_cu_fore_color, _cu_bkgnd_color)));
-            init_pair(_cu_get_color_pair(_cu_fore_color, _cu_bkgnd_color), _cu_fore_color, _cu_bkgnd_color);
-            attron(COLOR_PAIR(_cu_get_color_pair(_cu_fore_color, _cu_bkgnd_color)));
         }
 
         clear();
-        fflush(stdin);
         refresh();
         _working_window = stdscr;
         screen_initialized = 1;
@@ -98,6 +92,7 @@ void textcolor(int color) {
 }
 
 void delline(void) {
+    init_screen();
     wmove(_working_window, getcury(_working_window), 0);
     wclrtoeol(_working_window);
 }
@@ -136,7 +131,7 @@ int wherey(void) {
     return getcury(_working_window);
 }
 
-int cputs(char* buf) {
+int cputs(const char* buf) {
     int ret;
     init_screen();
     ret = wprintw(_working_window, "%s\n", buf);

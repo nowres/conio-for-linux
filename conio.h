@@ -35,7 +35,7 @@ int getch(void);
 int getche(void);
 int wherex(void);
 int wherey(void);
-int cputs(char*);
+int cputs(const char*);
 char* cgets(char*);
 int cprintf(const char*, ...);
 int cscanf(const char*, ...);
