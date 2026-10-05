@@ -1,6 +1,10 @@
 conio-for-linux
 ===============
 
+[![Build and package](https://github.com/nowres/conio-for-linux/actions/workflows/package.yml/badge.svg)](https://github.com/nowres/conio-for-linux/actions/workflows/package.yml)
+[![Release](https://img.shields.io/github/v/release/nowres/conio-for-linux)](https://github.com/nowres/conio-for-linux/releases)
+[![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Conio.h for linux 1.0
 
 A Linux implementation of the DOS/Windows `conio.h` console I/O API, built on ncurses.
