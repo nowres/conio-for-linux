@@ -1,0 +1,24 @@
+name: ${PKG_NAME}
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+section: libdevel
+maintainer: nowres RAFID <nowres.rafed@gmail.com>
+description: conio.h console I/O API for Linux (development files)
+homepage: https://github.com/nowres/conio-for-linux
+license: GPL-3.0
+contents:
+  - src: conio.h
+    dst: /usr/include/conio.h
+  - src: libconio.so.1
+    dst: ${LIBDIR}/libconio.so
+    type: symlink
+overrides:
+  deb:
+    depends:
+      - libconio1 (= ${VERSION})
+      - libncurses-dev
+  rpm:
+    depends:
+      - libconio = ${VERSION}
+      - ncurses-devel

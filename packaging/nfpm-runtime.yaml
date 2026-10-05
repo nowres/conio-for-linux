@@ -1,0 +1,25 @@
+name: ${PKG_NAME}
+arch: ${ARCH}
+platform: linux
+version: ${VERSION}
+section: libs
+maintainer: nowres RAFID <nowres.rafed@gmail.com>
+description: conio.h console I/O API for Linux (shared library)
+homepage: https://github.com/nowres/conio-for-linux
+license: GPL-3.0
+contents:
+  - src: dist/libconio.so.${VERSION}
+    dst: ${LIBDIR}/libconio.so.${VERSION}
+  - src: libconio.so.${VERSION}
+    dst: ${LIBDIR}/libconio.so.1
+    type: symlink
+scripts:
+  postinstall: packaging/ldconfig.sh
+  postremove: packaging/ldconfig.sh
+overrides:
+  deb:
+    depends:
+      - libncurses6
+  rpm:
+    depends:
+      - ncurses-libs

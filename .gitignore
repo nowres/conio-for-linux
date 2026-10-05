@@ -3,3 +3,4 @@ dist/
 .dep.inc
 nbproject/private/
 tests/test_conio
+out/
