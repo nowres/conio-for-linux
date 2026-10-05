@@ -159,7 +159,7 @@ int cprintf(const char* fmt, ...) {
     
     init_screen();
     va_start(v, fmt);
-    vwprintw(_working_window, fmt, v);
+    vw_printw(_working_window, fmt, v);
     va_end(v);
     wrefresh(_working_window);
     
@@ -173,7 +173,7 @@ int cscanf(const char* fmt, ...) {
     init_screen();
     echo();
     va_start(v, fmt);
-    ret = vwscanw(_working_window, fmt, v);
+    ret = vw_scanw(_working_window, fmt, v);
     va_end(v);
     wrefresh(_working_window);
     noecho();
