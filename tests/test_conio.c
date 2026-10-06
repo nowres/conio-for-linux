@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/wait.h>
+#include <time.h>
 
 extern int screen_initialized;
 extern WINDOW *_working_window;
@@ -196,10 +197,12 @@ static int run(const struct test *t, char *msg, size_t msgsz) {
         if (write(master, t->input, strlen(t->input)) < 0) {}
     }
     int timed_out = 0;
+    time_t deadline = time(NULL) + 10;
     for (;;) {
         struct pollfd pf = {master, POLLIN, 0};
-        int r = poll(&pf, 1, 5000);
-        if (r == 0) { timed_out = 1; kill(pid, SIGKILL); break; }
+        int r = poll(&pf, 1, 1000);
+        if (time(NULL) >= deadline) { timed_out = 1; kill(pid, SIGKILL); break; }
+        if (r == 0) continue;
         char junk[4096];
         if (r < 0 || read(master, junk, sizeof junk) <= 0) break;
     }
